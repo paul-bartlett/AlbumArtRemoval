@@ -1,8 +1,7 @@
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") 
 Function Get-Folder($initialDirectory)
 
 {
-    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")
-
     $foldername = New-Object System.Windows.Forms.FolderBrowserDialog
     $foldername.rootfolder = "MyComputer"
 
@@ -13,5 +12,5 @@ Function Get-Folder($initialDirectory)
     return $folder
 }
 
-$a = Get-Folder
-Remove-Item $a\* -recurse -include *.jpg, *.png -exclude folder.*, cover.*, *((get-item Get-ScriptDirectory).Directory.parent)*, *((get-item Get-ScriptDirectory).Directory.parent.parent)*
+$Path = Get-Folder
+Remove-Item -path $Path -recurse -include *.jpg, *.png -exclude folder.*, cover.*
