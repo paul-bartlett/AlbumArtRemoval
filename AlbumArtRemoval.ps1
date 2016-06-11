@@ -16,7 +16,8 @@ Function Get-Folder($initialDirectory)
 }
 $Path = Get-Folder
 
-<# Statement not supported in 3.0 due to bug with removing
-Remove-Item -path $Path -recurse -include *.jpg, *.png -exclude folder.*, cover.*, *$(($Path -split '\\')[-1])*, *$(($Path -split '\\')[-2])* 
-#>
-Get-ChildItem -path $Path -include *.jpg, *.png -exclude folder.*, cover.*, *$(($Path -split '\\')[-1])*, *$(($Path -split '\\')[-2])* -recurse | Remove-Item
+Remove-Item -path $Path -recurse -Force -include *.jpg, *.png -exclude folder.*, cover.*, *$(($Path -split '\\')[-1])*, *$(($Path -split '\\')[-2])* 
+
+<# 2.0 version
+ Get-ChildItem -path $Path -include *.jpg, *.png -exclude folder.*, cover.* -Force -recurse | Remove-Item -Force
+ #>
